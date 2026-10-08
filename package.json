@@ -2,6 +2,7 @@
   "name": "viewport-works-site",
   "private": true,
   "version": "0.1.0",
+  "description": "Website for Viewport Works",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
+  }
 }
