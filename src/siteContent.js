@@ -20,20 +20,20 @@ export const site = {
 }
 
 export const clients = [
-  'Macy’s Herald Square',
-  'Cipriani',
-  'Javits Center',
-  'Nassau Coliseum',
-  'Jones Beach Amphitheater',
-  'NYC EDC',
-  'Vista Equity Partners',
-  'BlackRock',
-  'One World Trade Center',
-  'United Nations NYC',
-  'Michelob Ultra',
-  'FIFA',
-  'High Line NYC',
-  'Anthropic',
+  { name: 'Macy’s Herald Square', logo: '/client-logos/macys.svg', size: 'mark' },
+  { name: 'Cipriani', logo: '/client-logos/cipriani.svg', size: 'wide' },
+  { name: 'Javits Center', logo: '/client-logos/javits.svg', size: 'wide' },
+  { name: 'Nassau Coliseum', logo: '/client-logos/nassau-coliseum.svg', size: 'wide' },
+  { name: 'Jones Beach Amphitheater', logo: '/client-logos/jones-beach.svg', size: 'wide' },
+  { name: 'NYC EDC', logo: '/client-logos/nycedc.svg', size: 'wide' },
+  { name: 'Vista Equity Partners', logo: '/client-logos/vista.svg', size: 'wide' },
+  { name: 'BlackRock', logo: '/client-logos/blackrock.svg', size: 'wide' },
+  { name: 'One World Trade Center', logo: '/client-logos/one-wtc.svg', size: 'wide' },
+  { name: 'United Nations NYC', logo: '/client-logos/united-nations.svg', size: 'mark' },
+  { name: 'Michelob Ultra', logo: '/client-logos/michelob-ultra.svg', size: 'wide' },
+  { name: 'FIFA', logo: '/client-logos/fifa.svg', size: 'wide' },
+  { name: 'High Line NYC', logo: '/client-logos/high-line.svg', size: 'mark' },
+  { name: 'Anthropic', logo: '/client-logos/anthropic.svg', size: 'mark' },
 ]
 
 export const services = [
