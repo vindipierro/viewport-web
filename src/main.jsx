@@ -60,9 +60,18 @@ function App() {
       </section>
 
       <section className="client-strip" data-reveal>
-        <span className="section-kicker">Selected experience</span>
-        <div className="logo-row" aria-label="Selected clients and organizations">
-          {clients.map(client => <span key={client}>{client}</span>)}
+        <div className="client-strip-heading">
+          <span className="section-kicker">Selected experience</span>
+        </div>
+        <div className="client-marquee" aria-label="Selected clients and organizations">
+          <div className="client-marquee-track">
+            <div className="client-marquee-group">
+              {clients.map(client => <span className="client-name" key={client}>{client}</span>)}
+            </div>
+            <div className="client-marquee-group" aria-hidden="true">
+              {clients.map(client => <span className="client-name" key={`duplicate-${client}`}>{client}</span>)}
+            </div>
+          </div>
         </div>
       </section>
 
