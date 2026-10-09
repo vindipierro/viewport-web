@@ -4,13 +4,7 @@ import './styles.css'
 import { clients, services, site, work } from './siteContent'
 
 function Mark() {
-  return (
-    <div className="mark" aria-hidden="true">
-      <span className="mark-arm mark-arm-left" />
-      <span className="mark-arm mark-arm-right" />
-      <span className="mark-core" />
-    </div>
-  )
+  return <img className="mark" src="/viewport-mark.svg" alt="" aria-hidden="true" />
 }
 
 function ClientLogo({ client, duplicate = false }) {
