@@ -20,11 +20,20 @@ export const site = {
 }
 
 export const clients = [
-  'CLIENT 01',
-  'CLIENT 02',
-  'CLIENT 03',
-  'CLIENT 04',
-  'CLIENT 05',
+  'Macy’s Herald Square',
+  'Cipriani',
+  'Javits Center',
+  'Nassau Coliseum',
+  'Jones Beach Amphitheater',
+  'NYC EDC',
+  'Vista Equity Partners',
+  'BlackRock',
+  'One World Trade Center',
+  'United Nations NYC',
+  'Michelob Ultra',
+  'FIFA',
+  'High Line NYC',
+  'Anthropic',
 ]
 
 export const services = [
