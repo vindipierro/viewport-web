@@ -13,6 +13,21 @@ function Mark() {
   )
 }
 
+function ClientLogo({ client, duplicate = false }) {
+  return (
+    <div
+      className={`client-logo-card client-logo-card--${client.size || 'wide'}`}
+      aria-label={duplicate ? undefined : client.name}
+      aria-hidden={duplicate ? 'true' : undefined}
+      tabIndex={duplicate ? -1 : 0}
+    >
+      <span className="client-logo-glow" aria-hidden="true" />
+      <img className="client-logo-image" src={client.logo} alt="" />
+      <span className="client-logo-label">{client.name}</span>
+    </div>
+  )
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const mailto = `mailto:${site.email}`
@@ -66,10 +81,10 @@ function App() {
         <div className="client-marquee" aria-label="Selected clients and organizations">
           <div className="client-marquee-track">
             <div className="client-marquee-group">
-              {clients.map(client => <span className="client-name" key={client}>{client}</span>)}
+              {clients.map(client => <ClientLogo client={client} key={client.name} />)}
             </div>
             <div className="client-marquee-group" aria-hidden="true">
-              {clients.map(client => <span className="client-name" key={`duplicate-${client}`}>{client}</span>)}
+              {clients.map(client => <ClientLogo client={client} duplicate key={`duplicate-${client.name}`} />)}
             </div>
           </div>
         </div>
