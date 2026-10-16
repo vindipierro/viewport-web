@@ -3,17 +3,18 @@ export const site = {
   location: 'New York, NY',
   descriptor: 'Technical Production',
   email: 'hello@viewportworks.com',
+  experienceNote: 'Experience includes work delivered directly and in collaboration with production partners.',
   hero: {
     eyebrow: 'New York · Technical Production',
-    title: 'Viewport Works',
-    copy: 'Technical production for live events, broadcast, and the teams behind them.',
+    title: 'Technical production, from scope to show day.',
+    copy: 'Viewport Works plans, engineers, sources, and executes the technical side of live events, broadcast, and special productions.',
     image: 'https://images.pexels.com/photos/7431356/pexels-photo-7431356.jpeg?auto=compress&cs=tinysrgb&w=2200',
   },
   about: {
-    heading: 'Experienced people. Clear execution.',
+    heading: 'One technical partner. Clear execution.',
     paragraphs: [
-      'Viewport Works is a New York-based technical production company providing production support for live events, broadcast, and creative teams.',
-      'Founder-led and built to stay flexible, we can step into a production as a technical partner, engineer a specific system, or support the full show from planning through execution.',
+      'Viewport Works is a New York-based technical production company built to take ownership of the technical side of a production, from early planning through show day.',
+      'Founder-led and intentionally flexible, we engineer the requirements of each job, coordinate trusted equipment and crew partners, and stay accountable for the technical execution from load-in through strike.',
     ],
     image: 'https://images.pexels.com/photos/7431356/pexels-photo-7431356.jpeg?auto=compress&cs=tinysrgb&w=1400',
   },
@@ -38,8 +39,8 @@ export const clients = [
 
 export const services = [
   {
-    title: 'Live Event Production',
-    copy: 'Technical planning and onsite execution for conferences, meetings, galas, live shows, and special events.',
+    title: 'Technical Production Management',
+    copy: 'Planning, system design, equipment and crew sourcing, vendor coordination, and onsite execution from pre-production through show day.',
   },
   {
     title: 'Video & Playback',
@@ -55,7 +56,26 @@ export const services = [
   },
   {
     title: 'Technical Direction & Engineering',
-    copy: 'Freelance technical direction, video engineering, systems support, and production integration.',
+    copy: 'Technical direction, video engineering, systems integration, and specialized production support for projects that need a focused technical role.',
+  },
+]
+
+export const processSteps = [
+  {
+    title: 'Scope',
+    copy: 'We learn the event, venue, audience, creative requirements, schedule, and budget so the technical plan starts with the production itself.',
+  },
+  {
+    title: 'Engineer',
+    copy: 'We develop the technical approach, system requirements, signal flow, staffing needs, and production plan.',
+  },
+  {
+    title: 'Source',
+    copy: 'We coordinate equipment, production resources, and specialist crew through trusted partners selected around the needs of the job.',
+  },
+  {
+    title: 'Execute',
+    copy: 'Viewport oversees the technical production through load-in, rehearsal, show, and strike, keeping one accountable technical lead throughout.',
   },
 ]
 
