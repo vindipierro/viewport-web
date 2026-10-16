@@ -89,6 +89,10 @@
   max-width: 780px;
 }
 
+.contact-intro h2 {
+  margin-bottom: 16px;
+}
+
 .contact-intro p {
   max-width: 650px;
   margin: 0;
