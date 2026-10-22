@@ -21,7 +21,7 @@ export const site = {
 }
 
 export const clients = [
-  { name: 'Macy’s Herald Square', logo: '/client-logos/macys.svg', size: 'mark' },
+  { name: 'Macy’s Herald Square', logo: '/client-logos/macys.svg', size: 'wide' },
   { name: 'Cipriani', logo: '/client-logos/cipriani.svg', size: 'wide' },
   { name: 'Javits Center', logo: '/client-logos/javits.svg', size: 'wide' },
   { name: 'Nassau Coliseum', logo: '/client-logos/nassau-coliseum.svg', size: 'wide' },
