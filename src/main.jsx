@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 import './positioning.css'
@@ -25,6 +25,14 @@ function ClientLogo({ client, duplicate = false }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const randomizedClients = useMemo(() => {
+    const shuffled = [...clients]
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }, [])
   const mailto = `mailto:${site.email}`
 
   useEffect(() => {
@@ -78,10 +86,10 @@ function App() {
         <div className="client-marquee" aria-label="Organizations represented in selected production experience">
           <div className="client-marquee-track">
             <div className="client-marquee-group">
-              {clients.map(client => <ClientLogo client={client} key={client.name} />)}
+              {randomizedClients.map(client => <ClientLogo client={client} key={client.name} />)}
             </div>
             <div className="client-marquee-group" aria-hidden="true">
-              {clients.map(client => <ClientLogo client={client} duplicate key={`duplicate-${client.name}`} />)}
+              {randomizedClients.map(client => <ClientLogo client={client} duplicate key={`duplicate-${client.name}`} />)}
             </div>
           </div>
         </div>
