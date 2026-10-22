@@ -7,14 +7,13 @@ export const site = {
   hero: {
     eyebrow: 'New York · Technical Production',
     title: 'Technical production, from scope to show day.',
-    copy: 'Viewport Works plans, engineers, sources, and executes the technical side of live events, broadcast, and special productions.',
+    copy: 'Audio, video, playback, broadcast, and show systems for live events across New York.',
     image: 'https://images.pexels.com/photos/7431356/pexels-photo-7431356.jpeg?auto=compress&cs=tinysrgb&w=2200',
   },
   about: {
-    heading: 'One technical partner. Clear execution.',
+    heading: 'Technical at the core. Flexible by design.',
     paragraphs: [
-      'Viewport Works is a New York-based technical production company built to take ownership of the technical side of a production, from early planning through show day.',
-      'Founder-led and intentionally flexible, we engineer the requirements of each job, coordinate trusted equipment and crew partners, and stay accountable for the technical execution from load-in through strike.',
+      'Viewport Works is a founder-led New York technical production company built to scale around the show. We can step into a focused technical role or take broader ownership by assembling the equipment, crew, and specialist support the production actually needs.',
     ],
     image: 'https://images.pexels.com/photos/7431356/pexels-photo-7431356.jpeg?auto=compress&cs=tinysrgb&w=1400',
   },
@@ -42,68 +41,83 @@ export const clients = [
 export const services = [
   {
     title: 'Technical Production Management',
-    copy: 'Planning, system design, equipment and crew sourcing, vendor coordination, and onsite execution from pre-production through show day.',
+    copy: 'Planning, systems, crew, vendors, and onsite execution from pre-production through show day.',
   },
   {
     title: 'Video & Playback',
-    copy: 'Switching, playback, projection, LED, graphics, and signal distribution built around the show.',
+    copy: 'Switching, playback, projection, LED, graphics, routing, and signal distribution.',
   },
   {
     title: 'Audio',
-    copy: 'Live sound, wireless systems, playback, routing, and production audio for rooms of every scale.',
+    copy: 'Live sound, wireless, playback, routing, and production audio for events of every scale.',
   },
   {
     title: 'Broadcast & Streaming',
-    copy: 'Multi-camera production, livestreaming, remote contributors, and hybrid event workflows.',
+    copy: 'Multi-camera production, livestreaming, remote contributors, and hybrid workflows.',
   },
   {
     title: 'Technical Direction & Engineering',
-    copy: 'Technical direction, video engineering, systems integration, and specialized production support for projects that need a focused technical role.',
+    copy: 'Show systems, integration, technical direction, and specialized engineering support.',
+  },
+]
+
+export const whyViewport = [
+  {
+    title: 'One accountable technical lead',
+    copy: 'A clear point of ownership from planning through load-in, show, and strike.',
+  },
+  {
+    title: 'Built around the show',
+    copy: 'Equipment and crew are selected for the production instead of forcing the production into a fixed package.',
+  },
+  {
+    title: 'Production-minded engineering',
+    copy: 'Technical decisions stay grounded in the event, the room, the creative, and the people running the show.',
   },
 ]
 
 export const processSteps = [
   {
     title: 'Scope',
-    copy: 'We learn the event, venue, audience, creative requirements, schedule, and budget so the technical plan starts with the production itself.',
+    copy: 'Event, venue, creative, schedule, and budget.',
   },
   {
     title: 'Engineer',
-    copy: 'We develop the technical approach, system requirements, signal flow, staffing needs, and production plan.',
+    copy: 'Systems, signal flow, staffing, and logistics.',
   },
   {
     title: 'Source',
-    copy: 'We coordinate equipment, production resources, and specialist crew through trusted partners selected around the needs of the job.',
+    copy: 'Equipment and specialists matched to the production.',
   },
   {
     title: 'Execute',
-    copy: 'Viewport oversees the technical production through load-in, rehearsal, show, and strike, keeping one accountable technical lead throughout.',
+    copy: 'Load-in, rehearsal, show, and strike.',
   },
 ]
 
 export const work = [
   {
-    title: 'Corporate Production',
-    meta: 'Technical production · Video · Playback',
+    title: 'Live Events',
+    meta: 'Technical production · Show systems',
     image: 'https://images.pexels.com/photos/9275222/pexels-photo-9275222.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    alt: 'Placeholder image for a corporate live production',
+    alt: 'Placeholder image for live event production experience',
   },
   {
-    title: 'Live Show Control',
-    meta: 'Technical direction · Engineering',
+    title: 'Corporate & Brand',
+    meta: 'Video · Playback · Production support',
     image: 'https://images.pexels.com/photos/7431356/pexels-photo-7431356.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    alt: 'Placeholder image for a live production control position',
+    alt: 'Placeholder image for corporate event production experience',
   },
   {
-    title: 'Broadcast & Streaming',
+    title: 'Broadcast & Video',
     meta: 'Multi-camera · Streaming · Show control',
     image: 'https://images.pexels.com/photos/37668809/pexels-photo-37668809.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    alt: 'Placeholder image for broadcast and streaming production',
+    alt: 'Placeholder image for broadcast and video production experience',
   },
   {
-    title: 'Live Audio',
-    meta: 'Audio systems · FOH · Show support',
+    title: 'Large-Scale Venues',
+    meta: 'Audio · Video · Systems support',
     image: 'https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    alt: 'Placeholder image for live audio production',
+    alt: 'Placeholder image for large venue production experience',
   },
 ]

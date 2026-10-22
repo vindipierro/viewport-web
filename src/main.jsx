@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 import './positioning.css'
-import { clients, processSteps, services, site, work } from './siteContent'
+import { clients, processSteps, services, site, whyViewport, work } from './siteContent'
 
 function Mark() {
   return <img className="mark" src="/viewport-mark.svg" alt="" aria-hidden="true" />
@@ -54,11 +54,12 @@ function App() {
         </a>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">Menu</button>
         <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
-          <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
+          <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
+          <a href="#why" onClick={() => setMenuOpen(false)}>Why Viewport</a>
           <a href="#process" onClick={() => setMenuOpen(false)}>Process</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a className="nav-cta" href={mailto}>Discuss Your Production</a>
+          <a className="nav-cta" href={mailto}>Start a Project</a>
         </nav>
       </header>
 
@@ -71,8 +72,8 @@ function App() {
           <h1>{site.hero.title}</h1>
           <p>{site.hero.copy}</p>
           <div className="hero-actions">
-            <a className="button button-primary" href={mailto}>Discuss Your Production</a>
-            <a className="text-link" href="#process">How We Work <span>↓</span></a>
+            <a className="button button-primary" href={mailto}>Start a Project</a>
+            <a className="text-link" href="#experience">View Experience <span>↓</span></a>
           </div>
         </div>
         <div className="scroll-cue">Scroll</div>
@@ -80,7 +81,7 @@ function App() {
 
       <section className="client-strip" data-reveal>
         <div className="client-strip-heading">
-          <span className="section-kicker">Selected experience</span>
+          <span className="section-kicker">Selected clients & venues</span>
           <p className="experience-note">{site.experienceNote}</p>
         </div>
         <div className="client-marquee" aria-label="Organizations represented in selected production experience">
@@ -95,47 +96,11 @@ function App() {
         </div>
       </section>
 
-      <section className="section services" id="services">
-        <div className="section-heading" data-reveal>
-          <span className="section-kicker">What we do</span>
-          <h2>One technical partner, built around the job.</h2>
-          <p>From complete production management to a focused technical role, {site.name} scales around what the production actually needs.</p>
-        </div>
-        <div className="service-list">
-          {services.map((service, index) => (
-            <article className="service-row" key={service.title} data-reveal>
-              <span className="service-number">0{index + 1}</span>
-              <h3>{service.title}</h3>
-              <p>{service.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="process-band" id="process">
-        <div className="process-inner">
-          <div className="section-heading process-heading" data-reveal>
-            <span className="section-kicker">How we work</span>
-            <h2>Bring us the production. We handle the technical path.</h2>
-            <p>Viewport can enter early in planning, translate the creative and operational brief into technical requirements, and carry that plan through show day.</p>
-          </div>
-          <div className="process-grid">
-            {processSteps.map((step, index) => (
-              <article className="process-step" key={step.title} data-reveal>
-                <span className="process-number">0{index + 1}</span>
-                <h3>{step.title}</h3>
-                <p>{step.copy}</p>
-              </article>
-            ))}
-          </div>
-          <p className="process-principle" data-reveal>Equipment and crew are selected around the requirements of each production rather than a fixed house inventory.</p>
-        </div>
-      </section>
-
-      <section className="section work" id="work">
+      <section className="section work" id="experience">
         <div className="section-heading work-heading" data-reveal>
-          <span className="section-kicker">Selected work</span>
-          <h2>Technical production in practice.</h2>
+          <span className="section-kicker">Production experience</span>
+          <h2>Work in the room, not just on paper.</h2>
+          <p>Experience across live events, corporate productions, broadcast, and large-scale venues.</p>
         </div>
         <div className="work-grid">
           {work.map((item, index) => (
@@ -149,7 +114,62 @@ function App() {
             </article>
           ))}
         </div>
-        <p className="placeholder-note" data-reveal>Placeholder imagery shown for layout. Real {site.name} production photography will replace these images.</p>
+        <p className="placeholder-note" data-reveal>Placeholder imagery remains in use while final Viewport production photography is selected.</p>
+      </section>
+
+      <section className="light-section services" id="services">
+        <div className="section light-section-inner">
+          <div className="section-heading" data-reveal>
+            <span className="section-kicker">What we do</span>
+            <h2>One technical partner, built around the show.</h2>
+            <p>From a focused technical role to broader production responsibility, Viewport scales around what the event actually needs.</p>
+          </div>
+          <div className="service-grid">
+            {services.map((service, index) => (
+              <article className="service-card" key={service.title} data-reveal>
+                <span className="service-number">0{index + 1}</span>
+                <h3>{service.title}</h3>
+                <p>{service.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="why-band" id="why">
+        <div className="section why-inner">
+          <div className="section-heading why-heading" data-reveal>
+            <span className="section-kicker">Why Viewport</span>
+            <h2>Technical without the friction.</h2>
+          </div>
+          <div className="why-grid">
+            {whyViewport.map(item => (
+              <article className="why-card" key={item.title} data-reveal>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="process-band" id="process">
+        <div className="process-inner">
+          <div className="section-heading process-heading" data-reveal>
+            <span className="section-kicker">How we work</span>
+            <h2>Clear path. Clean execution.</h2>
+          </div>
+          <div className="process-grid">
+            {processSteps.map((step, index) => (
+              <article className="process-step" key={step.title} data-reveal>
+                <span className="process-number">0{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+              </article>
+            ))}
+          </div>
+          <p className="process-principle" data-reveal><strong>Built around the show, not around a warehouse.</strong> Equipment and specialists are selected for the production rather than a fixed package.</p>
+        </div>
       </section>
 
       <section className="about-band" id="about">
@@ -160,17 +180,18 @@ function App() {
           <span className="section-kicker">About {site.name}</span>
           <h2>{site.about.heading}</h2>
           {site.about.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-          <a className="text-link" href={mailto}>Bring Us Your Production <span>↗</span></a>
+          <a className="text-link text-link-dark" href={mailto}>Start a Project <span>↗</span></a>
         </div>
       </section>
 
       <section className="contact" data-reveal>
         <div className="contact-intro">
           <span className="section-kicker">Start a conversation</span>
-          <h2>Have a production taking shape?</h2>
-          <p>Send us the brief, venue, date, or even the early idea. We can help define what the technical side needs next.</p>
+          <h2>Have a date, venue, brief, or just an idea?</h2>
+          <p>Send it over. We can help define what the technical side needs next.</p>
+          <a className="contact-email" href={mailto}>{site.email}</a>
         </div>
-        <a className="button button-primary button-large" href={mailto}>Discuss Your Production</a>
+        <a className="button button-primary button-large" href={mailto}>Start a Project</a>
       </section>
 
       <footer>
