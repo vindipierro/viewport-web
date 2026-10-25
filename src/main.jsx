@@ -10,7 +10,7 @@ function BrandLockup() {
       src="/branding/text-light.png"
       alt=""
       aria-hidden="true"
-      style={{ display: 'block', width: 'auto', height: '40px', objectFit: 'contain' }}
+      style={{ display: 'block', width: 'auto', height: '48px', objectFit: 'contain' }}
     />
   )
 }
