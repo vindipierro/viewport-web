@@ -7,10 +7,10 @@ import { clients, processSteps, services, site, whyViewport, work } from './site
 function BrandLockup() {
   return (
     <img
-      src="/branding/text-dark.png"
+      src="/branding/text-light.png"
       alt=""
       aria-hidden="true"
-      style={{ display: 'block', width: 'auto', height: '34px', objectFit: 'contain' }}
+      style={{ display: 'block', width: 'auto', height: '40px', objectFit: 'contain' }}
     />
   )
 }
