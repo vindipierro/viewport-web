@@ -194,7 +194,6 @@ function App() {
               </article>
             ))}
           </div>
-          <p className="process-principle" data-reveal><strong>Built around the show, not around a warehouse.</strong> Equipment and specialists are selected for the production rather than a fixed package.</p>
         </div>
       </section>
 
