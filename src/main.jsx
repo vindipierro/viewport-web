@@ -4,26 +4,14 @@ import './styles.css'
 import './positioning.css'
 import { clients, processSteps, services, site, whyViewport, work } from './siteContent'
 
-function Mark() {
-  return (
-    <svg className="mark" viewBox="0 0 128 128" aria-hidden="true" focusable="false">
-      <path className="mark-frame" d="M16 46V18h34v10H26v18H16Z" />
-      <path className="mark-frame" d="M78 110v-10h24V76h10v34H78Z" />
-      <line className="mark-main" x1="36" y1="33" x2="60" y2="94" stroke="currentColor" strokeWidth="18" strokeLinecap="butt" />
-      <line className="mark-accent" x1="88" y1="33" x2="64" y2="94" stroke="var(--brand-blue)" strokeWidth="18" strokeLinecap="butt" />
-    </svg>
-  )
-}
-
 function BrandLockup() {
   return (
-    <>
-      <Mark />
-      <span className="wordmark" aria-hidden="true">
-        <span className="wordmark-primary">Viewport</span>
-        <span className="wordmark-secondary">Works</span>
-      </span>
-    </>
+    <img
+      src="/branding/text-dark.png"
+      alt=""
+      aria-hidden="true"
+      style={{ display: 'block', width: 'auto', height: '34px', objectFit: 'contain' }}
+    />
   )
 }
 
