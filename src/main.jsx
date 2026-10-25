@@ -7,10 +7,10 @@ import { clients, processSteps, services, site, whyViewport, work } from './site
 function Mark() {
   return (
     <svg className="mark" viewBox="0 0 128 128" aria-hidden="true" focusable="false">
-      <path className="mark-frame" d="M14 45V14h36v10H24v21H14Z" />
-      <path className="mark-frame" d="M78 114v-10h26V81h10v33H78Z" />
-      <path className="mark-main" d="M32 31h19l25 48-12 23H52L24 47l8-16Z" />
-      <path className="mark-accent" d="M84 31h20L77 84 66 64Z" />
+      <path className="mark-frame" d="M16 46V18h34v10H26v18H16Z" />
+      <path className="mark-frame" d="M78 110v-10h24V76h10v34H78Z" />
+      <line className="mark-main" x1="36" y1="33" x2="60" y2="94" stroke="currentColor" strokeWidth="18" strokeLinecap="butt" />
+      <line className="mark-accent" x1="88" y1="33" x2="64" y2="94" stroke="var(--brand-blue)" strokeWidth="18" strokeLinecap="butt" />
     </svg>
   )
 }
