@@ -3,8 +3,8 @@ export const site = {
   location: 'New York, NY',
   descriptor: 'Technical Production',
   email: 'hello@viewportworks.com',
-  domain: 'viewportworks.com',
-  url: 'https://viewportworks.com',
+  domain: 'www.viewportworks.com',
+  url: 'https://www.viewportworks.com',
   experienceNote: 'Experience includes work delivered directly and in collaboration with production partners.',
   hero: {
     eyebrow: 'New York · Technical Production',
