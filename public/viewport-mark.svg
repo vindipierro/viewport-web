@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#101113"/><path d="M20 29h29l28 52 23-52h12L73 103H59Z" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Viewport Works">
+  <path d="M14 45V14h36v10H24v21H14Z" fill="#0d1a2f"/>
+  <path d="M78 114v-10h26V81h10v33H78Z" fill="#0d1a2f"/>
+  <path d="M32 31h19l25 48-12 23H52L24 47l8-16Z" fill="#0d1a2f"/>
+  <path d="M84 31h20L77 84 66 64Z" fill="#2f6bff"/>
+</svg>

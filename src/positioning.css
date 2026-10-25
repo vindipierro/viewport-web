@@ -11,7 +11,7 @@
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(circle at 78% 30%, rgba(116, 91, 255, .09), transparent 34%),
+    radial-gradient(circle at 78% 30%, rgba(47, 107, 255, .10), transparent 34%),
     linear-gradient(135deg, rgba(13, 27, 47, .92), rgba(5, 11, 22, .97));
 }
 
@@ -46,14 +46,14 @@
 }
 
 .process-step:hover {
-  background: rgba(255, 255, 255, .025);
+  background: rgba(47, 107, 255, .035);
   transform: translateY(-3px);
 }
 
 .process-number {
   display: block;
   margin-bottom: 42px;
-  color: #6f7d91;
+  color: #74859f;
   font-size: 11px;
   letter-spacing: .14em;
 }

@@ -5,7 +5,26 @@ import './positioning.css'
 import { clients, processSteps, services, site, whyViewport, work } from './siteContent'
 
 function Mark() {
-  return <img className="mark" src="/viewport-mark.svg" alt="" aria-hidden="true" />
+  return (
+    <svg className="mark" viewBox="0 0 128 128" aria-hidden="true" focusable="false">
+      <path className="mark-frame" d="M14 45V14h36v10H24v21H14Z" />
+      <path className="mark-frame" d="M78 114v-10h26V81h10v33H78Z" />
+      <path className="mark-main" d="M32 31h19l25 48-12 23H52L24 47l8-16Z" />
+      <path className="mark-accent" d="M84 31h20L77 84 66 64Z" />
+    </svg>
+  )
+}
+
+function BrandLockup() {
+  return (
+    <>
+      <Mark />
+      <span className="wordmark" aria-hidden="true">
+        <span className="wordmark-primary">Viewport</span>
+        <span className="wordmark-secondary">Works</span>
+      </span>
+    </>
+  )
 }
 
 function ClientLogo({ client, duplicate = false }) {
@@ -49,8 +68,7 @@ function App() {
     <main>
       <header className="nav-wrap">
         <a className="brand" href="#top" aria-label={`${site.name} home`}>
-          <Mark />
-          <span>{site.name}</span>
+          <BrandLockup />
         </a>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">Menu</button>
         <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
@@ -195,7 +213,7 @@ function App() {
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top"><Mark /><span>{site.name}</span></a>
+        <a className="brand footer-brand" href="#top" aria-label={`${site.name} home`}><BrandLockup /></a>
         <div className="footer-copy"><a href={site.url}>{site.domain}</a> · {site.location} · {site.descriptor}</div>
         <div className="footer-copy">© {new Date().getFullYear()} {site.name}</div>
       </footer>
