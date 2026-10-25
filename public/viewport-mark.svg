@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Viewport Works">
-  <path d="M16 46V18h34v10H26v18H16Z" fill="#0d1a2f"/>
-  <path d="M78 110v-10h24V76h10v34H78Z" fill="#0d1a2f"/>
-  <line x1="36" y1="33" x2="60" y2="94" stroke="#0d1a2f" stroke-width="18" stroke-linecap="butt"/>
-  <line x1="88" y1="33" x2="64" y2="94" stroke="#2f6bff" stroke-width="18" stroke-linecap="butt"/>
-</svg>
