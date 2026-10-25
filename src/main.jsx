@@ -196,7 +196,7 @@ function App() {
 
       <footer>
         <a className="brand footer-brand" href="#top"><Mark /><span>{site.name}</span></a>
-        <div className="footer-copy">{site.location} · {site.descriptor}</div>
+        <div className="footer-copy"><a href={site.url}>{site.domain}</a> · {site.location} · {site.descriptor}</div>
         <div className="footer-copy">© {new Date().getFullYear()} {site.name}</div>
       </footer>
     </main>
