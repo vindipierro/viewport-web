@@ -6,12 +6,32 @@ import { clients, processSteps, services, site, whyViewport, work } from './site
 
 function BrandLockup() {
   return (
-    <img
-      src="/branding/text-light.png"
-      alt=""
+    <span
       aria-hidden="true"
-      style={{ display: 'block', width: 'auto', height: '48px', objectFit: 'contain' }}
-    />
+      style={{
+        position: 'relative',
+        display: 'block',
+        width: '214px',
+        height: '34px',
+        overflow: 'hidden',
+        flex: '0 0 auto'
+      }}
+    >
+      <img
+        src="/branding/text-light.png"
+        alt=""
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          display: 'block',
+          width: 'auto',
+          height: '80px',
+          maxWidth: 'none',
+          transform: 'translate(-50%, -50%)'
+        }}
+      />
+    </span>
   )
 }
 
