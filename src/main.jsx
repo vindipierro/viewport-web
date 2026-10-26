@@ -222,7 +222,7 @@ function App() {
       <footer>
         <a className="brand footer-brand" href="#top" aria-label={`${site.name} home`}><BrandLockup /></a>
         <div className="footer-copy"><a href={site.url}>{site.domain}</a> · {site.location} · {site.descriptor}</div>
-        <div className="footer-copy">© {new Date().getFullYear()} {site.name}</div>
+        <div className="footer-copy">© {new Date().getFullYear()} Viewport Works LLC</div>
       </footer>
     </main>
   )
