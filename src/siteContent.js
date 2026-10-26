@@ -3,6 +3,7 @@ export const site = {
   location: 'New York, NY',
   descriptor: 'Technical Production',
   email: 'hello@viewportworks.com',
+  inquiryEmail: 'inquiries@viewportworks.com',
   domain: 'www.viewportworks.com',
   url: 'https://www.viewportworks.com',
   experienceNote: 'Experience includes work delivered directly and in collaboration with production partners.',
@@ -42,59 +43,81 @@ export const clients = [
 ]
 
 export const services = [
-  { title: 'Production Management', copy: 'A coordinated technical scope, from planning and budgeting to equipment, staffing, vendor coordination and onsite execution.' },
-  { title: 'Video & Displays', copy: 'LED, projection, switching, playback, confidence monitors and graphics, connected by considered routing and signal distribution.' },
-  { title: 'Audio & Communications', copy: 'PA, wireless microphones, playback, routing, intercom and production audio so the room, stage and crew stay connected.' },
-  { title: 'Broadcast & Streaming', copy: 'Multi-camera production, livestreams, recordings, remote contributors and hybrid workflows for the audience beyond the room.' },
-  { title: 'Lighting, Staging & Infrastructure', copy: 'Lighting, staging, rigging, power and supporting infrastructure, sourced with the appropriate specialists around the venue and event.' },
-  { title: 'Technical Direction & Engineering', copy: 'System design, show systems, integration and specialized engineering, with technical direction that connects the plan to the live show.' },
+  {
+    number: '01',
+    title: 'Audio',
+    description: 'Room coverage, speech, music playback, wireless coordination and show-critical comms designed around the format and venue.',
+    details: ['PA systems', 'Wireless microphones', 'Digital mixing', 'Comms & IFB'],
+  },
+  {
+    number: '02',
+    title: 'Video & Presentation',
+    description: 'Displays, projection, switching and confidence monitoring that keep presentations polished and the room visually connected.',
+    details: ['Projection & displays', 'Presentation switching', 'Confidence monitors', 'Playback systems'],
+  },
+  {
+    number: '03',
+    title: 'Broadcast & Streaming',
+    description: 'Camera systems, remote contribution and streaming workflows for hybrid events, broadcasts and content capture.',
+    details: ['Multi-camera systems', 'Streaming', 'Remote presenters', 'Recording'],
+  },
+  {
+    number: '04',
+    title: 'Technical Direction',
+    description: 'A single technical lead coordinating scope, vendors, crew and show execution from planning through final case out.',
+    details: ['Technical planning', 'Crew coordination', 'Show calling support', 'Vendor management'],
+  },
 ]
 
-export const partnerModes = [
-  { title: 'Full technical production', copy: 'Hand us the technical brief. We develop the plan, coordinate equipment and crew, and lead execution from load-in through strike.', label: 'One coordinated scope' },
-  { title: 'Alongside your vendors', copy: 'Already have a production team or venue AV partner? Bring us into a defined role, with clear responsibilities and coordinated handoffs.', label: 'Part of your team' },
-  { title: 'White-label production partner', copy: 'Technical planning and delivery behind your brand. We agree how we represent your team and communicate with your client from the outset.', label: 'Behind your brand' },
-]
+export const eventTypes = ['Corporate meeting', 'Conference / summit', 'Gala / fundraiser', 'Brand activation', 'Private event', 'Broadcast / livestream', 'Other']
 
-export const audiences = [
-  { title: 'Corporate Events', copy: 'Conferences, town halls, meetings and launches, with the technical plan built around presenters and the audience.' },
-  { title: 'Brand & Experiential', copy: 'Technical systems that support the creative, the content and the way guests move through an experience.' },
-  { title: 'Galas & Special Events', copy: 'Speeches, performances, presentations and key moments brought together in one coordinated show.' },
-  { title: 'Agencies & Event Planners', copy: 'A technical partner for the full scope or a defined role, working within your production and behind your brand.' },
-  { title: 'Venues & Production Partners', copy: 'Additional technical direction, engineering and onsite support that fits your existing systems and team.' },
-]
+export const inquiryNeeds = ['Audio', 'Video / presentation', 'Broadcast / streaming', 'Technical direction', 'Crew', 'Equipment', 'Not sure yet']
 
 export const processSteps = [
-  { title: 'Scope', copy: 'Start with the date, venue, audience, creative, schedule, requirements and budget. Agree what success looks like and who owns each part.', output: 'An agreed production scope' },
-  { title: 'Engineer', copy: 'Develop the system design, technical plan, staffing and signal flow. Work through venue requirements, access and production logistics.', output: 'A coordinated technical plan' },
-  { title: 'Source', copy: 'Select equipment, crew and specialist vendors around the plan. Align availability, responsibilities and the production schedule.', output: 'The right resources, aligned' },
-  { title: 'Execute', copy: 'Lead load-in, system testing, technical rehearsal and show operation. Keep the team coordinated through the final cue and strike.', output: 'Ownership through show day' },
+  { number: '01', title: 'Brief', text: 'Share the date, venue, format and what you know so far. A polished production brief is not required.' },
+  { number: '02', title: 'Scope', text: 'We define the technical approach, fill in the missing details and align the production with the event plan.' },
+  { number: '03', title: 'Plan', text: 'You receive a coordinated technical plan and quote covering equipment, crew and execution.' },
+  { number: '04', title: 'Execute', text: 'We lead the technical production onsite, adapting as the room and run of show evolve.' },
 ]
 
-export const responsibilities = [
-  ['Venue coordination', 'Access, house requirements and vendor handoffs addressed before load-in.'],
-  ['Equipment & crew sourcing', 'The right resources and specialists brought into one technical plan.'],
-  ['Production schedules', 'Load-in, setup, rehearsal, show and strike aligned with your run of show.'],
-  ['System engineering', 'Signal flow, interfaces and content requirements worked through in advance.'],
-  ['Technical rehearsals', 'Presentations, playback, microphones and cues tested with the people using them.'],
-  ['Onsite leadership', 'A technical lead to direct the crew, manage changes and keep you informed.'],
-  ['Backup planning', 'Critical paths reviewed and appropriate contingencies agreed within the scope.'],
-  ['Load-in through strike', 'Technical ownership that continues after the audience leaves.'],
+export const plannerAdvantages = [
+  { title: 'One technical point of contact', text: 'Fewer handoffs, faster decisions and one person accountable for how the technical pieces come together.' },
+  { title: 'Built around the event plan', text: 'The technical scope supports the room, audience and run of show instead of forcing the event into a preset package.' },
+  { title: 'Flexible vendor coordination', text: 'We can own the full technical scope or integrate with venues, agencies and existing production partners.' },
+  { title: 'NYC-ready execution', text: 'Practical planning for load-ins, labor, venue rules and the realities of producing events across New York.' },
 ]
 
-export const work = [
-  { title: 'Live event production', eventType: 'Live events', role: 'Technical production & show systems', disciplines: 'Audio · Video · Show systems', location: null, image: 'https://images.pexels.com/photos/9275222/pexels-photo-9275222.jpeg?auto=compress&cs=tinysrgb&w=1600', alt: 'Illustrative live event image, not a Viewport project photograph' },
-  { title: 'Corporate & brand programs', eventType: 'Corporate & brand', role: 'Video, playback & production support', disciplines: 'Video · Playback · Production support', location: null, image: 'https://images.pexels.com/photos/7431356/pexels-photo-7431356.jpeg?auto=compress&cs=tinysrgb&w=1600', alt: 'Illustrative production control image, not a Viewport project photograph' },
-  { title: 'Broadcast & video production', eventType: 'Broadcast & video', role: 'Multi-camera & streaming support', disciplines: 'Multi-camera · Streaming · Show control', location: null, image: 'https://images.pexels.com/photos/37668809/pexels-photo-37668809.jpeg?auto=compress&cs=tinysrgb&w=1600', alt: 'Illustrative broadcast image, not a Viewport project photograph' },
-  { title: 'Venue & systems support', eventType: 'Large-scale venues', role: 'Audio, video & systems support', disciplines: 'Audio · Video · Systems integration', location: null, image: 'https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1600', alt: 'Illustrative venue image, not a Viewport project photograph' },
+export const caseStudies = [
+  {
+    eyebrow: 'Corporate / Conference',
+    title: 'Executive program with distributed presentation and broadcast support',
+    summary: 'A coordinated technical package spanning room audio, presentation playback, camera coverage and remote contribution, led through one production contact.',
+    tags: ['Audio', 'Video', 'Broadcast', 'Technical Direction'],
+  },
+  {
+    eyebrow: 'Gala / Special Event',
+    title: 'Flexible technical production for a high-touch guest experience',
+    summary: 'A venue-responsive approach balancing presentation moments, entertainment cues and guest-facing production while keeping the technical footprint clean.',
+    tags: ['Audio', 'Presentation', 'Crew', 'Show Support'],
+  },
+  {
+    eyebrow: 'Brand / Activation',
+    title: 'Technical partner for a fast-moving live experience',
+    summary: 'Equipment, operators and onsite technical leadership structured to adapt quickly as creative, venue and schedule details evolved.',
+    tags: ['Playback', 'Displays', 'Crew', 'Technical Direction'],
+  },
 ]
 
-export const plannerFaqs = [
-  ['Can you work with our existing production company?', 'Yes. We can lead the full technical scope or join a defined part of your production. We agree responsibilities, reporting lines and vendor interfaces before work begins.'],
-  ['Can you work under our brand?', 'Yes. White-label support can cover technical planning, sourcing and onsite delivery. We agree client-facing communication, crew presentation and how Viewport represents your team.'],
-  ['When should we bring you in?', 'As soon as you have a brief, even if the date, venue or scope is still taking shape. Early involvement helps align the technical approach with your creative, schedule and budget.'],
-  ['What should we send for a quote?', 'Share whatever you know: date, venue or city, audience, event format, creative direction, schedule, budget and existing vendors. We can help define the remaining technical requirements.'],
+export const faqItems = [
+  { question: 'How early should we involve Viewport?', answer: 'As early as possible is useful, especially before venue and production decisions are locked. We can also step into an existing plan when the technical scope needs definition or execution support.' },
+  { question: 'Do you provide both equipment and crew?', answer: 'Yes. We can provide the technical equipment, engineers and operators as one coordinated scope, or work alongside existing venue and vendor resources.' },
+  { question: 'Can you work with our venue’s in-house AV team?', answer: 'Absolutely. We regularly structure scopes around venue requirements and can supplement, coordinate with or lead alongside in-house resources depending on the event.' },
+  { question: 'Do you only work in New York City?', answer: 'New York is our home market, but the production model can travel. Send the event details and we can discuss the right approach for the location.' },
 ]
 
-export const eventTypes = ['Corporate event', 'Conference / meeting', 'Brand / experiential', 'Gala / special event', 'Agency / planner production', 'Venue / production support', 'Other / still planning']
-export const inquiryNeeds = ['Full technical production', 'Production management', 'Video & displays', 'Audio & communications', 'Broadcast & streaming', 'Lighting, staging & infrastructure', 'Technical direction & engineering', 'White-label support', 'Help defining the scope']
+export const navigation = [
+  { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#work' },
+  { label: 'Approach', href: '#approach' },
+  { label: 'For Event Planners', href: '/event-planners/' },
+]
