@@ -161,7 +161,7 @@ a, button, input, select, textarea, summary { -webkit-tap-highlight-color: trans
 .experience-note { color: #a3afc1; }
 .marquee-toggle { display: flex; flex: 0 0 auto; gap: 14px; align-items: center; padding: 0 0 0 12px; min-height: 44px; color: #bdc7d5; background: transparent; border: 0; font-size: 12px; }
 .client-marquee-track { animation-duration: 75s; }
-.client-marquee:hover .client-marquee-track, .client-marquee:focus-within .client-marquee-track, .client-marquee.is-paused .client-marquee-track { animation-play-state: paused; }
+.client-marquee:not(.is-active) .client-marquee-track, .client-marquee:hover .client-marquee-track, .client-marquee:focus-within .client-marquee-track, .client-marquee.is-paused .client-marquee-track { animation-play-state: paused; }
 .client-logo-image { opacity: .72; }
 .client-logo-card--mark .client-logo-image { max-width: 70px; max-height: 57px; }
 .split-heading { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: end; margin-bottom: 48px; }
@@ -252,8 +252,8 @@ a, button, input, select, textarea, summary { -webkit-tap-highlight-color: trans
 .inquiry-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
 .form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 20px; }
 .form-grid > label { display: flex; flex-wrap: wrap; gap: 8px 5px; font-size: 13px; color: #e0e7f1; align-content: start; min-width: 0; }
-.form-grid label > input, .form-grid select, .form-grid textarea { width: 100%; min-width: 0; max-width: 100%; border: 1px solid #43536a; border-radius: 2px; padding: 12px 13px; min-height: 48px; background: #0c1b2f; color: #f4f7fb; line-height: 1.4; font-size: 16px; color-scheme: dark; }
-.form-grid label > input:focus, .form-grid select:focus, .form-grid textarea:focus { border-color: #8fb2ff; }
+.form-grid > label > input, .form-grid select, .form-grid textarea { width: 100%; min-width: 0; max-width: 100%; border: 1px solid #43536a; border-radius: 2px; padding: 12px 13px; min-height: 48px; background: #0c1b2f; color: #f4f7fb; line-height: 1.4; font-size: 16px; color-scheme: dark; }
+.form-grid > label > input:focus, .form-grid select:focus, .form-grid textarea:focus { border-color: #8fb2ff; }
 .form-grid input::placeholder, .form-grid textarea::placeholder { color: #9daec5; opacity: 1; }
 .form-grid textarea { resize: vertical; }
 .field-full { grid-column: 1 / -1; }
@@ -261,7 +261,7 @@ a, button, input, select, textarea, summary { -webkit-tap-highlight-color: trans
 .needs-field legend { font-size: 13px; margin-bottom: 12px; color: #e0e7f1; }
 .needs-options { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 18px; }
 .needs-options label { display: flex; align-items: flex-start; gap: 9px; min-height: 36px; padding: 5px 0; color: #bac7d9; font-size: 12px; line-height: 1.5; cursor: pointer; }
-.needs-options input { width: 17px; height: 17px; flex: 0 0 17px; margin: 1px 0 0; accent-color: #8fb2ff; }
+.needs-options input { width: 17px; height: 17px; flex: 0 0 17px; margin: 1px 0 0; accent-color: #8fb2ff; color-scheme: dark; }
 .form-grid > .form-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .form-privacy { color: #a3b3c9; font-size: 11px; line-height: 1.6; margin: 22px 0; }
 .inquiry-fields:disabled { opacity: .65; }

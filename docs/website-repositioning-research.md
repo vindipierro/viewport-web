@@ -38,3 +38,13 @@ The supplied [Expo exhibitor page](https://www.theeventplannerexpo.com/2026-exhi
 The repository had no form backend and Vercel had no configured project environment variables at inspection. A Vercel Node function uses the Resend HTTP API directly, without another SDK, CRM or paid form service. See the README for server-only variables and activation steps. The endpoint returns a useful 503 while delivery is unconfigured and never reports a fake successful submission. Provider acceptance is unit-tested using a mock, without sending mail.
 
 Technical sources: [Vercel Node Functions](https://vercel.com/docs/functions/runtimes/node-js), [Resend send-email API](https://resend.com/docs/api-reference/emails/send-email).
+
+## Preview verification
+
+The branch was pushed and explicitly deployed as a Preview in the existing `viewport-web` Vercel project. The deployed initial build returned HTTP 200 with route-specific HTML, canonical/social metadata and Vercel's `X-Robots-Tag: noindex` preview protection. Production domains and deployment protection were not changed.
+
+Browser review covered the homepage and planner page at desktop 1710×811, tablet 768×1024 and mobile 390×844 and 320×740. Reviewed hero wrapping, navigation, capability/process layouts, section transitions, experience cards, logos, inquiry and planner FAQs. Desktop/tablet/mobile DOM checks found no document overflow or clipped heading/body text. No broken loaded images or unexpected browser console errors were observed.
+
+Interactions checked: mobile menu open/close and Escape; homepage/page navigation; anchored CTAs; logo pause/resume; planner FAQ expansion; native required-field validation; service selection; and the deployed inquiry error path with a synthetic `example.com` address. The API returned the expected unavailable message with delivery unconfigured, preserving the entered brief. No real email was sent. Seven backend tests cover valid/invalid payloads, malformed JSON, cross-origin rejection, oversized bodies, the honeypot, missing configuration, mocked accepted delivery and sanitized provider failures.
+
+Preview review found and corrected two details: the logo strip now waits until visible before moving past the leading brands, and checkbox sizing is isolated from the main text-input styles. Live provider delivery remains unverified until the owner configures the server-only email variables and confirms a labeled test message in the intended inbox.

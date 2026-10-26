@@ -57,9 +57,16 @@ function ClientLogo({ client, duplicate }) {
 
 function ClientExperience() {
   const [paused, setPaused] = useState(false)
-  return <section className="client-strip" aria-label="Selected production experience">
+  const [active, setActive] = useState(false)
+  const stripRef = useRef(null)
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setActive(entry.isIntersecting), { threshold: 0.1 })
+    if (stripRef.current) observer.observe(stripRef.current)
+    return () => observer.disconnect()
+  }, [])
+  return <section ref={stripRef} className="client-strip" aria-label="Selected production experience">
     <div className="client-strip-heading"><div><span className="section-kicker">Selected brands & venues in our production experience</span><p className="experience-note">{site.experienceNote}</p></div><button className="marquee-toggle" onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? 'Play logos' : 'Pause logos'}<span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span></button></div>
-    <div className={`client-marquee${paused ? ' is-paused' : ''}`}><div className="client-marquee-track">{[false, true].map(duplicate => <div className="client-marquee-group" key={String(duplicate)} aria-hidden={duplicate || undefined}>{clients.map(client => <ClientLogo client={client} duplicate={duplicate} key={client.name} />)}</div>)}</div></div>
+    <div className={`client-marquee${active ? ' is-active' : ''}${paused ? ' is-paused' : ''}`}><div className="client-marquee-track">{[false, true].map(duplicate => <div className="client-marquee-group" key={String(duplicate)} aria-hidden={duplicate || undefined}>{clients.map(client => <ClientLogo client={client} duplicate={duplicate} key={client.name} />)}</div>)}</div></div>
   </section>
 }
 
