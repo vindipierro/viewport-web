@@ -1,10 +1,35 @@
 import React, { useRef, useState } from 'react'
 import { eventTypes, inquiryNeeds, site } from './siteContent'
 
+function buildInquiryMailto(data) {
+  const value = (name) => String(data.get(name) || '').trim()
+  const needs = data.getAll('needs').map(need => String(need).trim()).filter(Boolean)
+  const subject = 'Viewport Works / Production quote inquiry'
+  const body = [
+    'Hi Viewport Works,',
+    '',
+    'I tried to submit the production quote form on your website, but it could not be delivered. Here are my event details:',
+    '',
+    `Name: ${value('name')}`,
+    `Company: ${value('company') || 'Not provided'}`,
+    `Email: ${value('email')}`,
+    `Event date: ${value('date') || 'Still planning'}`,
+    `Venue / city: ${value('venue') || 'Not provided'}`,
+    `Event type: ${value('eventType') || 'Still planning'}`,
+    `Attendance: ${value('attendance') || 'Not provided'}`,
+    `Production needs: ${needs.join(', ') || 'Help defining the scope'}`,
+    '',
+    'Event brief:',
+    value('message'),
+  ].join('\n')
+  return `mailto:${site.inquiryEmail || site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+
 export default function InquiryForm({ planner = false }) {
   const [status, setStatus] = useState('idle')
   const [message, setMessage] = useState('')
   const [errors, setErrors] = useState({})
+  const [fallbackMailto, setFallbackMailto] = useState('')
   const requestId = useRef(null)
   const statusRef = useRef(null)
 
@@ -14,10 +39,12 @@ export default function InquiryForm({ planner = false }) {
     const form = event.currentTarget
     if (!form.reportValidity()) return
     const data = new FormData(form)
+    const fallbackHref = buildInquiryMailto(data)
     requestId.current ||= crypto.randomUUID()
     setStatus('sending')
     setMessage('Sending your event brief…')
     setErrors({})
+    setFallbackMailto('')
     try {
       const response = await fetch('/api/inquiry', {
         method: 'POST',
@@ -25,18 +52,35 @@ export default function InquiryForm({ planner = false }) {
         body: JSON.stringify({ ...Object.fromEntries(data), needs: data.getAll('needs'), source: planner ? 'event-planners' : 'homepage', requestId: requestId.current }),
         signal: AbortSignal.timeout(15000),
       })
-      const result = await response.json()
+      let result
+      try {
+        result = await response.json()
+      } catch {
+        const error = new Error('We couldn’t read the server response.')
+        error.useMailto = true
+        throw error
+      }
       if (!response.ok) {
         setErrors(result.fields || {})
-        throw new Error(result.error || 'We couldn’t send your inquiry. Please try again or email us directly.')
+        const error = new Error(result.error || 'We couldn’t send your inquiry. Please try again or email us directly.')
+        error.useMailto = !result.fields || Object.keys(result.fields).length === 0
+        throw error
       }
       setStatus('success')
       setMessage('Your event brief is on its way to Viewport. We’ll follow up at the email address you provided.')
       form.reset()
       requestId.current = null
     } catch (error) {
+      const networkFailure = error.name === 'TimeoutError' || error.message === 'Failed to fetch' || error instanceof TypeError
+      const useMailto = error.useMailto || networkFailure
       setStatus('error')
-      setMessage(error.name === 'TimeoutError' ? 'The request timed out. Please try again or email us directly.' : error.message === 'Failed to fetch' ? 'We couldn’t connect. Please try again or email us directly.' : error.message)
+      if (useMailto) {
+        setFallbackMailto(fallbackHref)
+        setMessage('We couldn’t send your inquiry online, so we opened a drafted email with your event details instead.')
+        window.location.href = fallbackHref
+      } else {
+        setMessage(error.message)
+      }
     }
     requestAnimationFrame(() => statusRef.current?.focus())
   }
@@ -74,7 +118,7 @@ export default function InquiryForm({ planner = false }) {
             <p className="form-privacy">Your details are used to respond to this inquiry. Please leave out confidential or sensitive information.</p>
             <button type="submit" className="button button-primary" disabled={status === 'sending'}>{status === 'sending' ? 'Sending your brief…' : 'Request a Production Quote'}<span aria-hidden="true">↗</span></button>
           </fieldset>
-          <div ref={statusRef} tabIndex={-1} className={`form-status form-status--${status}`} role="status" aria-live="polite" aria-atomic="true">{message}{status === 'error' && <> <a href={`mailto:${site.email}`}>{site.email}</a></>}</div>
+          <div ref={statusRef} tabIndex={-1} className={`form-status form-status--${status}`} role="status" aria-live="polite" aria-atomic="true">{message}{status === 'error' && (fallbackMailto ? <> <a href={fallbackMailto}>Open drafted email</a></> : <> <a href={`mailto:${site.email}`}>{site.email}</a></>)}</div>
           <noscript><p>Email your event brief to <a href={`mailto:${site.email}`}>{site.email}</a>. The inquiry form requires JavaScript.</p></noscript>
         </form>
       </div>
