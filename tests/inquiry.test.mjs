@@ -16,7 +16,7 @@ async function request(body = valid, overrides = {}) {
   await handler({ method: 'POST', headers: { 'content-type': 'application/json', host: 'preview.example.com', origin: 'https://preview.example.com' }, body, ...overrides }, res)
   return res
 }
-test('builds a short stable inquiry reference from the request UUID', () => assert.equal(getInquiryReference(valid.requestId), 'VW-D3D16C26'))
+test('builds a short stable inquiry reference from the request UUID', () => assert.equal(getInquiryReference(valid.requestId), 'VW-D3D16C2637A8'))
 test('accepts an early brief with unknown optional details', () => assert.ok(validateInquiry(valid).data))
 test('rejects invalid contact, dates, attendance, long fields and unlisted needs', () => {
   for (const patch of [{ email: 'bad' }, { name: 'a' }, { message: 'short' }, { date: '2026-02-30' }, { attendance: '-2' }, { company: 'x'.repeat(161) }, { needs: ['injected-service'] }, { requestId: 'bad-id' }]) assert.ok(validateInquiry({ ...valid, ...patch }).error)
@@ -43,14 +43,14 @@ test('sends plain text to the fixed recipient with reply-to, unique subject and 
   const spy = mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify({ id: 'mock-delivery-id' }), { status: 200 }))
   const res = await request()
   assert.equal(res.code, 200)
-  assert.equal(res.data.inquiryId, 'VW-D3D16C26')
+  assert.equal(res.data.inquiryId, 'VW-D3D16C2637A8')
   const args = spy.mock.calls[0].arguments
   const email = JSON.parse(args[1].body)
   assert.equal(args[0], 'https://api.resend.com/emails')
   assert.equal(email.reply_to, valid.email)
   assert.deepEqual(email.to, [process.env.INQUIRY_TO_EMAIL || 'hello@viewportworks.com'])
-  assert.equal(email.subject, 'Viewport Works inquiry - Preview Reviewer - VW-D3D16C26')
-  assert.match(email.text, /Inquiry ID: VW-D3D16C26/)
+  assert.equal(email.subject, 'Viewport Works inquiry - Preview Reviewer - VW-D3D16C2637A8')
+  assert.match(email.text, /Inquiry ID: VW-D3D16C2637A8/)
   assert.match(email.text, /sample production brief/)
   assert.equal(email.html, undefined)
   assert.equal(args[1].headers['Idempotency-Key'], `production-inquiry/${valid.requestId}`)
