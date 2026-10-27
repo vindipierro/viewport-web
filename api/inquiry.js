@@ -4,6 +4,10 @@ const emailPattern = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 const allowedFields = { name: 120, company: 160, email: 254, date: 10, venue: 200, eventType: 80, attendance: 7, message: 5000, website: 200, source: 30, requestId: 36 }
 
+export function getInquiryReference(requestId) {
+  return `VW-${requestId.replaceAll('-', '').slice(0, 8).toUpperCase()}`
+}
+
 export function validateInquiry(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return { error: 'Please send a valid event brief.' }
   const data = {}
@@ -26,9 +30,14 @@ export function validateInquiry(body) {
   return Object.keys(fields).length ? { error: 'Please check the highlighted details and try again.', fields } : { data }
 }
 
+function makeSubject(data) {
+  return `Viewport Works inquiry - ${data.name} - ${getInquiryReference(data.requestId)}`
+}
+
 function makeEmail(data) {
   return [
     'Viewport Works / Production quote inquiry',
+    `Inquiry ID: ${getInquiryReference(data.requestId)}`,
     '',
     `Name: ${data.name}`,
     `Company: ${data.company || 'Not provided'}`,
@@ -84,14 +93,14 @@ export default async function handler(req, res) {
         from: process.env.INQUIRY_FROM_EMAIL,
         to: [process.env.INQUIRY_TO_EMAIL || 'hello@viewportworks.com'],
         reply_to: result.data.email,
-        subject: 'Viewport Works / Production quote inquiry',
+        subject: makeSubject(result.data),
         text: makeEmail(result.data),
       }),
       signal: AbortSignal.timeout(10000),
     })
     const delivery = await response.json()
     if (!response.ok || !delivery.id) return res.status(response.status === 429 ? 429 : 502).json({ error: 'We couldn’t send your inquiry just now. Please try again shortly or email us directly.' })
-    return res.status(200).json({ ok: true })
+    return res.status(200).json({ ok: true, inquiryId: getInquiryReference(result.data.requestId) })
   } catch {
     return res.status(502).json({ error: 'We couldn’t send your inquiry just now. Please try again shortly or email us directly.' })
   }
