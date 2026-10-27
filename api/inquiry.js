@@ -5,7 +5,7 @@ const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-
 const allowedFields = { name: 120, company: 160, email: 254, date: 10, venue: 200, eventType: 80, attendance: 7, message: 5000, website: 200, source: 30, requestId: 36 }
 
 export function getInquiryReference(requestId) {
-  return `VW-${requestId.replaceAll('-', '').slice(0, 8).toUpperCase()}`
+  return `VW-${requestId.replaceAll('-', '').slice(0, 12).toUpperCase()}`
 }
 
 export function validateInquiry(body) {
