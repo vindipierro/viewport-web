@@ -43,7 +43,7 @@ function Hero({ planner }) {
       <div className="eyebrow">{planner ? 'New York · For planners, agencies & producers' : site.hero.eyebrow}</div>
       <h1 id="hero-heading">{planner ? <>The technical partner<br className="desktop-break" /> behind your production.</> : <>One technical partner.<br className="desktop-break" /> From scope to show day.</>}</h1>
       <p>{planner ? 'Your creative. Your client. A technical team that fits the way you produce, from the first brief to the final cue.' : site.hero.copy}</p>
-      <div className="hero-actions"><a className="button button-primary" href="#inquiry">Request a Production Quote <span aria-hidden="true">↗</span></a><a className="text-link" href={planner ? '#partnership' : '#services'}>{planner ? 'Find your way to work with us' : 'Explore our capabilities'} <span aria-hidden="true">↓</span></a></div>
+      <div className="hero-actions"><a className="button button-primary" href="#inquiry">Request Information <span aria-hidden="true">↗</span></a><a className="text-link" href={planner ? '#partnership' : '#services'}>{planner ? 'Find your way to work with us' : 'Explore our capabilities'} <span aria-hidden="true">↓</span></a></div>
       <div className="hero-production-note"><span>01 / Plan</span><span>02 / Build</span><span>03 / Run the show</span></div>
     </div>
   </section>
