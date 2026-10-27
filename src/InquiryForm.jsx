@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { eventTypes, inquiryNeeds, site } from './siteContent'
 
 function inquiryReference(requestId) {
-  return `VW-${requestId.replaceAll('-', '').slice(0, 8).toUpperCase()}`
+  return `VW-${requestId.replaceAll('-', '').slice(0, 12).toUpperCase()}`
 }
 
 function buildInquiryMailto(data, requestId) {
