@@ -26,21 +26,20 @@
 
 .production-partners-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
 
 .production-partner {
-  min-height: 104px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  padding: 22px 24px;
+  min-height: 126px;
+  display: grid;
+  place-items: center;
+  padding: 26px 30px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, .012);
+  overflow: hidden;
   transition: background .2s ease, border-color .2s ease, transform .2s ease;
 }
 
@@ -50,40 +49,23 @@
   transform: translateY(-2px);
 }
 
-.production-partner-name {
-  color: #edf2fa;
-  font-family: 'Manrope', sans-serif;
-  font-size: clamp(15px, 1.25vw, 18px);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -.035em;
+.production-partner-logo {
+  display: block;
+  width: auto;
+  max-width: min(220px, 90%);
+  height: auto;
+  max-height: 62px;
+  opacity: .68;
+  filter: grayscale(1) invert(1) brightness(1.04);
+  transform: scale(.98);
+  transform-origin: center;
+  transition: opacity .25s ease, filter .25s ease, transform .25s ease;
 }
 
-.production-partner-detail {
-  color: #7587a1;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .16em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.production-partner--djusa .production-partner-name {
-  font-size: clamp(19px, 1.55vw, 23px);
-  letter-spacing: -.055em;
-}
-
-.production-partner--inhouse .production-partner-name {
-  font-weight: 500;
-}
-
-.production-partner--live .production-partner-name {
-  font-weight: 700;
-}
-
-.production-partner--soundhouse .production-partner-name,
-.production-partner--shadowbox .production-partner-name {
-  letter-spacing: -.045em;
+.production-partner:hover .production-partner-logo {
+  opacity: .98;
+  filter: grayscale(1) invert(1) brightness(1.15) drop-shadow(0 6px 18px rgba(47, 107, 255, .12));
+  transform: scale(1.025);
 }
 
 @media (max-width: 900px) {
@@ -112,7 +94,12 @@
   }
 
   .production-partner {
-    min-height: 78px;
-    padding: 18px 20px;
+    min-height: 102px;
+    padding: 22px 24px;
+  }
+
+  .production-partner-logo {
+    max-width: min(210px, 82%);
+    max-height: 56px;
   }
 }
