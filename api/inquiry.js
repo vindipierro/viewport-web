@@ -1,3 +1,4 @@
+import { checkBotId } from 'botid/server'
 import { eventTypes, inquiryNeeds } from '../src/siteContent.js'
 
 const emailPattern = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/
@@ -6,6 +7,20 @@ const allowedFields = { name: 120, company: 160, email: 254, date: 10, venue: 20
 
 export function getInquiryReference(requestId) {
   return `VW-${requestId.replaceAll('-', '').slice(0, 12).toUpperCase()}`
+}
+
+export async function isAutomatedRequest(headers, verifier = checkBotId) {
+  try {
+    const verification = await verifier({
+      advancedOptions: {
+        checkLevel: 'basic',
+        headers,
+      },
+    })
+    return verification.isBot === true
+  } catch {
+    return false
+  }
 }
 
 export function validateInquiry(body) {
@@ -72,6 +87,7 @@ export default async function handler(req, res) {
       return res.status(403).json({ error: 'Please submit the form from the Viewport website.' })
     }
   }
+  if (await isAutomatedRequest(req.headers)) return res.status(403).json({ error: 'We couldn’t accept this inquiry. Please email us directly.' })
   let body = req.body
   if (typeof body === 'string') {
     try { body = JSON.parse(body) } catch { return res.status(400).json({ error: 'Please send a valid event brief.' }) }
