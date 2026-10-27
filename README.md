@@ -1,123 +1,70 @@
 # Viewport Works Website
 
-Website for **Viewport Works**, a New York technical production company supporting live events, video, audio, playback, broadcast, streaming, engineering, equipment sourcing, and show execution.
+A New York technical production partner for event planners, agencies, producers, venues and corporate teams. Production: https://www.viewportworks.com
 
-Production site: **https://www.viewportworks.com**
+## Stack and local work
 
-## Stack
-
-- React
-- Vite
-- Plain CSS
-- Static deployment on Vercel
-- No backend required for the current site
-
-## Run locally
-
-Use a current Node.js LTS release.
+React, Vite, plain CSS and one Vercel Node function. No router, UI library, form SDK or database dependency. Node 24 matches the existing Vercel project.
 
 ```bash
-npm install
+npm ci
 npm run dev
-```
-
-Vite will print the local development URL, usually `http://localhost:5173`.
-
-For a production build:
-
-```bash
+npm test
 npm run build
 npm run preview
 ```
 
-## Project structure
+`npm run dev` serves both pages for frontend development. Local email-function testing requires `vercel dev` with server-only development variables. Vite's dev/preview commands do not execute `api/inquiry.js`.
 
-```text
-viewport-web/
-├── index.html
-├── public/
-│   ├── 404.html
-│   ├── branding/
-│   │   ├── square-dark.png
-│   │   ├── square-light.png
-│   │   ├── text-dark.png
-│   │   ├── text-light.png
-│   │   └── thumbnail-1.png
-│   └── client-logos/
-├── src/
-│   ├── main.jsx
-│   ├── positioning.css
-│   ├── siteContent.js
-│   └── styles.css
-├── .gitignore
-├── package.json
-└── vite.config.js
-```
+The build makes separate HTML entries for `/` and `/event-planners`, then uses Vite's SSR build and React's existing server renderer to pre-render both routes. The temporary `.prerender` output is removed. Content and metadata are readable in the first HTML response, with interactive components hydrated in the browser.
 
-`src/siteContent.js` is the main content inventory. Client and venue names, services, selected work, contact information, and primary site copy should live there rather than being scattered through the layout.
+## Structure
 
-## Branding assets
+- `src/siteContent.js`: content, ordered brands/venues, capabilities, process, partnership modes, experience areas and form choices.
+- `src/App.jsx`: shared layout, homepage and event planner page.
+- `src/InquiryForm.jsx`: accessible production quote form and asynchronous feedback.
+- `src/styles.css`, `src/positioning.css`: approved base visual language and positioning refinements.
+- `src/main.jsx`, `src/entry-server.jsx`, `scripts/prerender.mjs`: browser hydration and build-time rendering.
+- `index.html`, `event-planners/index.html`: route-specific metadata, canonical and social tags.
+- `api/inquiry.js`: validated, server-side email delivery.
+- `tests/inquiry.test.mjs`: input, transport, spam trap, configuration and provider-result tests.
+- `vercel.json`: clean URLs and security headers; unmatched pages keep the existing branded 404.
+- `docs/website-repositioning-research.md`: research, source limitations and implementation rationale.
 
-The current website uses raster PNG brand assets in `public/branding/` as the source of truth for the Viewport Works identity.
+## Enable inquiry delivery
 
-- `text-light.png` — horizontal lockup for dark backgrounds, used in the site header/footer and custom 404 page
-- `text-dark.png` — horizontal lockup for light backgrounds
-- `square-light.png` — standalone mark for dark backgrounds
-- `square-dark.png` — standalone mark for light backgrounds and browser/app icon usage
-- `thumbnail-1.png` — social-sharing/Open Graph image
+The frontend POSTs JSON to `/api/inquiry`. Delivery is intentionally unavailable until these server-only variables are configured in Vercel:
 
-Avoid rebuilding the logo geometry as SVG unless a final approved vector source becomes available. The PNG assets preserve the approved logo proportions and typography.
+| Variable | Value |
+| --- | --- |
+| `RESEND_API_KEY` | A sending-only Resend key scoped to the verified sender domain. Store as a secret. |
+| `INQUIRY_FROM_EMAIL` | A verified sender, for example `Viewport Works <inquiries@viewportworks.com>`. |
+| `INQUIRY_TO_EMAIL` | Optional destination override. Defaults to `hello@viewportworks.com`. |
 
-## Social sharing and metadata
+Use the existing Resend account/domain if available. Authenticate the sending domain with Resend before selecting the sender. Put values directly in the Vercel dashboard, not in Git or chat. Never prefix these variables with `VITE_`. `.env.example` contains empty placeholders for local setup; `.env.local` and Vercel local files are ignored.
 
-`index.html` contains the canonical URL, site description, Open Graph tags, Twitter card metadata, favicon, and Apple touch icon.
+For preview testing, scope variables to Preview and the `website-repositioning` branch, using a test inbox if desired. Configuration changes require a new preview deployment. Production variables should be configured by the owner only when the production release is approved. This branch must not be merged or promoted as part of preview review.
 
-The canonical URL is:
+After configuring, submit an explicitly labeled test inquiry and confirm receipt in the destination mailbox. The success message means the email provider accepted the message; it does not guarantee inbox delivery. Check Resend delivery/bounce logs for delivery issues. No automatic message is sent to the person making the inquiry.
 
-```text
-https://www.viewportworks.com/
-```
+Without configuration, the endpoint returns HTTP 503. The form keeps the entered data, announces the problem and offers `hello@viewportworks.com` as a direct alternative. It does not open an email client automatically, store an unsubmitted lead or claim the inquiry was received.
 
-Social previews use:
+The function validates lengths, email, dates, attendance and allowlisted choices, bounds payload size, rejects cross-origin browser submissions, uses a honeypot and sends plain text with a fixed sender/recipient. The visitor's email is `reply_to`, never the sender. The request UUID becomes the provider idempotency key so retries of an unchanged brief do not send duplicate mail. Provider errors and secrets are never returned to the browser. There is no persistence or attachment upload. Enable an appropriate Vercel WAF rate-limit rule for `/api/inquiry` before enabling public delivery if abuse protection beyond the honeypot and provider limits is needed; no unreliable in-memory global limiter is claimed.
 
-```text
-/branding/thumbnail-1.png
-```
+## Preview workflow
 
-This image is referenced by both Open Graph and Twitter metadata so platforms such as iMessage can render a branded link preview.
+All repositioning changes belong on `website-repositioning`. Vercel should build non-production Git branches as Preview. If Git deployment does not run, create a Preview for the same repository branch and exact commit in the existing `viewport-web` project. Never use `--prod`, promote, change production domains or merge while reviewing.
 
-## Custom 404 page
+The existing Vercel deployment-protection settings are retained. A reviewer may need to sign into the authorized Vercel team to see a preview.
 
-`public/404.html` provides a simple branded not-found page instead of the default Vercel error page. It uses the current horizontal light logo and links users back to the homepage.
+## Brand and content rules
 
-## Mobile Safari
+The PNG lockups in `public/branding` remain the approved source of truth. Do not reconstruct the logo geometry. `/branding/thumbnail-1.png` remains the social image. Fonts, navy/cream palette, editorial sections and restrained blue accents are retained.
 
-The site explicitly sets the root `html` background and hides horizontal overflow so iOS Safari does not expose white gutters during overscroll. The viewport meta tag also uses `viewport-fit=cover` for modern iPhones.
+Brand/venue references are experience, including direct and collaborative engagements. Preserve the disclaimer. Do not imply sole ownership or a direct relationship from a logo alone. Logos have a deliberate order beginning BlackRock, Macy's, FIFA, United Nations, Javits, Cipriani, Anthropic and One World Trade Center.
 
-## Deployment
+The work cards remain experience areas with illustrative imagery, not fabricated individual case studies. Their data supports event type, role, disciplines and an optional location. Add a location, client, production date, result or project photograph only after verification. The pending real-photo/content work is unchanged.
 
-The site is deployed on Vercel from the `main` branch.
+## SEO
 
-Primary domain:
-
-```text
-www.viewportworks.com
-```
-
-The root domain should redirect to the `www` hostname so canonical URLs, social metadata, and the public site remain consistent.
-
-## Design direction
-
-The site uses a premium technical-production direction: deep navy backgrounds, cool white typography, restrained cobalt-blue accents, large imagery, minimal UI chrome, and subtle motion.
-
-The brand should feel established, cinematic, and technical without leaning into generic AV clichés.
-
-## Content approach
-
-The homepage is intentionally not an exhaustive case-study archive. It communicates capability through selected production experience, service categories, recognizable client and venue references, photography, and concise positioning.
-
-Where work was completed as part of a larger production team or subcontracted engagement, site language should describe Viewport Works' production experience without implying ownership of the full event.
-
-## Remaining content work
-
-The main remaining content task is replacing placeholder production imagery with final Viewport Works photography and confirming any final labels or selected-work descriptions before treating the site as fully complete.
+Both pages have their own static title, description, canonical URL, Open Graph and Twitter tags. Shared Organization JSON-LD contains only known organization details, with no invented address, ratings or statistics. `public/sitemap.xml` lists the two routes. Vercel preview indexing protection is retained.

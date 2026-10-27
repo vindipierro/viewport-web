@@ -1,5 +1,7 @@
 node_modules/
 dist/
+.prerender/
+.vercel/
 .DS_Store
 .env
 .env.*
@@ -9,3 +11,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
