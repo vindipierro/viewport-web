@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 const partners = [
-  { name: 'Soundhouse AV Rentals', logo: '/partner-logos/soundhouse.svg' },
-  { name: 'Shadowbox Design Management', logo: '/partner-logos/shadowbox.svg' },
-  { name: 'Long Island Video / LIVE', logo: '/partner-logos/live.svg' },
-  { name: 'Hart to Hart Entertainment', logo: '/partner-logos/hart-to-hart.svg' },
-  { name: 'Boom Event Source', logo: '/partner-logos/boom-event-source.svg' },
-  { name: 'NY Talent Group', logo: '/partner-logos/ny-talent-group.svg' },
-  { name: 'DJUSA', logo: '/partner-logos/djusa.svg' },
-  { name: 'DJs Unlimited / DJU Events', logo: '/partner-logos/dju-events.svg' },
-  { name: 'InHouse Design', logo: '/partner-logos/inhouse-design.svg' },
+  'Soundhouse AV Rentals',
+  'Shadowbox Design Management',
+  'Long Island Video / LIVE',
+  'Hart to Hart Entertainment',
+  'Boom Event Source',
+  'NY Talent Group',
+  'DJUSA',
+  'DJs Unlimited / DJU Events',
+  'InHouse Design',
 ]
 
 export default function ProductionPartners() {
@@ -39,8 +39,8 @@ export default function ProductionPartners() {
       </div>
       <div className="production-partners-grid" aria-label="Selected production partners">
         {partners.map(partner => (
-          <div className="production-partner" key={partner.name}>
-            <img className="production-partner-logo" src={partner.logo} alt={partner.name} loading="lazy" />
+          <div className="production-partner" key={partner}>
+            <span className="production-partner-name">{partner}</span>
           </div>
         ))}
       </div>
