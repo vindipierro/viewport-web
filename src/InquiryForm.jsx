@@ -1,14 +1,20 @@
 import React, { useRef, useState } from 'react'
 import { eventTypes, inquiryNeeds, site } from './siteContent'
 
-function buildInquiryMailto(data) {
+function inquiryReference(requestId) {
+  return `VW-${requestId.replaceAll('-', '').slice(0, 8).toUpperCase()}`
+}
+
+function buildInquiryMailto(data, requestId) {
   const value = (name) => String(data.get(name) || '').trim()
   const needs = data.getAll('needs').map(need => String(need).trim()).filter(Boolean)
-  const subject = 'Viewport Works / Production quote inquiry'
+  const reference = inquiryReference(requestId)
+  const subject = `Viewport Works inquiry - ${value('name') || 'Website inquiry'} - ${reference}`
   const body = [
     'Hi Viewport Works,',
     '',
     'I tried to submit the production quote form on your website, but it could not be delivered. Here are my event details:',
+    `Inquiry ID: ${reference}`,
     '',
     `Name: ${value('name')}`,
     `Company: ${value('company') || 'Not provided'}`,
@@ -39,8 +45,8 @@ export default function InquiryForm({ planner = false }) {
     const form = event.currentTarget
     if (!form.reportValidity()) return
     const data = new FormData(form)
-    const fallbackHref = buildInquiryMailto(data)
     requestId.current ||= crypto.randomUUID()
+    const fallbackHref = buildInquiryMailto(data, requestId.current)
     setStatus('sending')
     setMessage('Sending your event brief…')
     setErrors({})
@@ -66,8 +72,9 @@ export default function InquiryForm({ planner = false }) {
         error.useMailto = !result.fields || Object.keys(result.fields).length === 0
         throw error
       }
+      const reference = result.inquiryId || inquiryReference(requestId.current)
       setStatus('success')
-      setMessage('Your event brief is on its way to Viewport. We’ll follow up at the email address you provided.')
+      setMessage(`Your event brief is on its way to Viewport. We’ll follow up at the email address you provided. Reference: ${reference}.`)
       form.reset()
       requestId.current = null
     } catch (error) {
