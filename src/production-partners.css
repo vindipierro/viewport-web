@@ -32,14 +32,15 @@
 }
 
 .production-partner {
-  min-height: 126px;
+  min-height: 112px;
   display: grid;
   place-items: center;
-  padding: 26px 30px;
+  padding: 24px 28px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, .012);
   overflow: hidden;
+  text-align: center;
   transition: background .2s ease, border-color .2s ease, transform .2s ease;
 }
 
@@ -49,23 +50,22 @@
   transform: translateY(-2px);
 }
 
-.production-partner-logo {
+.production-partner-name {
   display: block;
-  width: auto;
-  max-width: min(220px, 90%);
-  height: auto;
-  max-height: 62px;
-  opacity: .68;
-  filter: grayscale(1) invert(1) brightness(1.04);
-  transform: scale(.98);
-  transform-origin: center;
-  transition: opacity .25s ease, filter .25s ease, transform .25s ease;
+  max-width: 250px;
+  color: #dfe7f2;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+  transition: color .2s ease, transform .2s ease;
 }
 
-.production-partner:hover .production-partner-logo {
-  opacity: .98;
-  filter: grayscale(1) invert(1) brightness(1.15) drop-shadow(0 6px 18px rgba(47, 107, 255, .12));
-  transform: scale(1.025);
+.production-partner:hover .production-partner-name {
+  color: #fff;
+  transform: scale(1.02);
 }
 
 @media (max-width: 900px) {
@@ -94,12 +94,11 @@
   }
 
   .production-partner {
-    min-height: 102px;
-    padding: 22px 24px;
+    min-height: 82px;
+    padding: 20px 22px;
   }
 
-  .production-partner-logo {
-    max-width: min(210px, 82%);
-    max-height: 56px;
+  .production-partner-name {
+    font-size: 16px;
   }
 }
