@@ -1,0 +1,104 @@
+.production-partners-mount {
+  margin: 44px 0 48px;
+}
+
+.production-partners {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0 30px;
+}
+
+.production-partners-heading {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  gap: 36px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.production-partners-heading p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.production-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.production-partner {
+  min-height: 112px;
+  display: grid;
+  place-items: center;
+  padding: 24px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .012);
+  overflow: hidden;
+  text-align: center;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.production-partner:hover {
+  background: rgba(47, 107, 255, .04);
+  border-color: rgba(143, 178, 255, .28);
+  transform: translateY(-2px);
+}
+
+.production-partner-name {
+  display: block;
+  max-width: 250px;
+  color: #dfe7f2;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.production-partner:hover .production-partner-name {
+  color: #fff;
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  .production-partners-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .production-partners-mount {
+    margin: 34px 0 40px;
+  }
+
+  .production-partners {
+    padding-top: 24px;
+  }
+
+  .production-partners-heading {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .production-partners-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .production-partner {
+    min-height: 82px;
+    padding: 20px 22px;
+  }
+
+  .production-partner-name {
+    font-size: 16px;
+  }
+}
