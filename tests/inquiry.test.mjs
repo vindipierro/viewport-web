@@ -1,6 +1,6 @@
 import test, { afterEach, mock } from 'node:test'
 import assert from 'node:assert/strict'
-import handler, { getInquiryReference, validateInquiry } from '../api/inquiry.js'
+import handler, { getInquiryReference, isAutomatedRequest, validateInquiry } from '../api/inquiry.js'
 
 const valid = { name: 'Preview Reviewer', email: 'reviewer@example.com', company: '', date: '', venue: '', eventType: '', attendance: '', needs: [], message: 'A sample production brief for validation.', website: '', source: 'homepage', requestId: 'd3d16c26-37a8-499a-bb57-70ce72814166' }
 const originalEnv = { key: process.env.RESEND_API_KEY, from: process.env.INQUIRY_FROM_EMAIL }
@@ -20,6 +20,11 @@ test('builds a short stable inquiry reference from the request UUID', () => asse
 test('accepts an early brief with unknown optional details', () => assert.ok(validateInquiry(valid).data))
 test('rejects invalid contact, dates, attendance, long fields and unlisted needs', () => {
   for (const patch of [{ email: 'bad' }, { name: 'a' }, { message: 'short' }, { date: '2026-02-30' }, { attendance: '-2' }, { company: 'x'.repeat(161) }, { needs: ['injected-service'] }, { requestId: 'bad-id' }]) assert.ok(validateInquiry({ ...valid, ...patch }).error)
+})
+test('bot verification recognizes bot verdicts and fails open if verification is unavailable', async () => {
+  assert.equal(await isAutomatedRequest({}, async () => ({ isBot: true })), true)
+  assert.equal(await isAutomatedRequest({}, async () => ({ isBot: false })), false)
+  assert.equal(await isAutomatedRequest({}, async () => { throw new Error('verification unavailable') }), false)
 })
 test('rejects malformed JSON, foreign origins, unsupported methods and oversized payloads', async () => {
   assert.equal((await request('{')).code, 400)
