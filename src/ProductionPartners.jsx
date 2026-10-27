@@ -17,6 +17,9 @@ export default function ProductionPartners() {
   const [host, setHost] = useState(null)
 
   useEffect(() => {
+    const path = window.location.pathname.replace(/\/$/, '') || '/'
+    if (path !== '/event-planners') return
+
     const partnership = document.querySelector('#partnership')
     const partnerGrid = partnership?.querySelector('.partner-grid')
     if (!partnership || !partnerGrid) return
